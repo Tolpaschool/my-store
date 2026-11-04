@@ -8,6 +8,7 @@ function Navbar() {
         <li>الرئيسية</li>
         <li>المنتجات</li>
         <li>السلة</li>
+        <li>تواصل معنا </li>
       </ul>
     </nav>
   );
