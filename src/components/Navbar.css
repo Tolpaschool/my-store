@@ -1,27 +1,50 @@
 .navbar {
-  background: #6956f9ee;
-  color: white;
-  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 14px 32px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
 }
 
 .navbar-logo {
-  font-size: 20px;
+  font-size: 22px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .navbar-links {
   list-style: none;
   display: flex;
-  gap: 20px;
-  font-size: 14px;
+  gap: 28px;
+  font-size: 15px;
+  color: var(--muted);
 }
 
 .navbar-links li {
   cursor: pointer;
+  transition: color 0.2s;
 }
 
 .navbar-links li:hover {
-  text-decoration: underline;
+  color: var(--ink);
+}
+
+.navbar-cart {
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  padding: 9px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
 }
