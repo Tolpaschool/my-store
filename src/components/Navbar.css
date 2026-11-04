@@ -1,0 +1,27 @@
+.navbar {
+  background: #6956f9ee;
+  color: white;
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo {
+  font-size: 20px;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+}
+
+.navbar-links li {
+  cursor: pointer;
+}
+
+.navbar-links li:hover {
+  text-decoration: underline;
+}
