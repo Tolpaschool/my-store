@@ -1,0 +1,5 @@
+.search {
+  width: 100%; padding: 12px 18px; font-family: inherit; font-size: 15px;
+  border: 1px solid var(--line); border-radius: 12px; background: var(--surface); outline: none;
+}
+.search:focus { border-color: var(--brand); box-shadow: 0 0 0 3px #e0e7ff; }
