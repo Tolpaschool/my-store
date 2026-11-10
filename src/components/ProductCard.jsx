@@ -1,14 +1,21 @@
 import "./ProductCard.css";
+import { Link } from "react-router-dom";
 
 function ProductCard({ product }) {
   return (
     <article className="card">
-      <div className="card-image" style={{ background: product.color }}>
+      <Link
+        to={`/product/${product.id}`}
+        className="card-image"
+        style={{ background: product.color }}
+      >
         <span>{product.emoji}</span>
-      </div>
+      </Link>
       <div className="card-body">
         <span className="card-category">{product.category}</span>
-        <h3 className="card-title">{product.name}</h3>
+        <h3 className="card-title">
+          <Link to={`/product/${product.id}`}>{product.name}</Link>
+        </h3>
         <div className="card-footer">
           <p className="card-price">{product.price} ر.س</p>
           <button className="card-btn">أضف للسلة</button>
