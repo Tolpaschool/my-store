@@ -48,3 +48,7 @@
   border-radius: 999px;
   background: linear-gradient(135deg, var(--brand), var(--brand-2));
 }
+.navbar-logo { text-decoration: none; }
+.navbar-links a { text-decoration: none; color: inherit; transition: color 0.2s; }
+.navbar-links a:hover { color: var(--ink); }
+.navbar-links a.active { color: var(--brand); font-weight: 700; }

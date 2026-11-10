@@ -39,3 +39,14 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 22px;
 }
+.toolbar { display: flex; gap: 12px; margin-bottom: 16px; }
+.sort {
+  font-family: inherit; font-size: 14px; padding: 0 14px; border: 1px solid var(--line);
+  border-radius: 12px; background: var(--surface); cursor: pointer;
+}
+.reset-btn {
+  border: 0; background: none; color: var(--brand); font-family: inherit;
+  font-weight: 700; cursor: pointer; margin-bottom: 16px;
+}
+.empty { text-align: center; color: var(--muted); padding: 60px 0; font-size: 17px; }
+.results-count { color: var(--muted); font-size: 14px; margin-bottom: 16px; }
