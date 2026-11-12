@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import NotFound from './pages/NotFound.jsx';
 import ProductDetails from "./pages/ProductDetails";
+import Cart from "./pages/Cart";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
      <Footer />
      </>

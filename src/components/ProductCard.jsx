@@ -1,7 +1,9 @@
 import "./ProductCard.css";
 import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 function ProductCard({ product }) {
+  const { addToCart } = useCart();
   return (
     <article className="card">
       <Link
@@ -18,7 +20,13 @@ function ProductCard({ product }) {
         </h3>
         <div className="card-footer">
           <p className="card-price">{product.price} ر.س</p>
-          <button className="card-btn">أضف للسلة</button>
+<button
+  className="card-btn"
+  onClick={() => addToCart(product)}
+  disabled={product.stock === 0}
+>
+  {product.stock === 0 ? "نفد" : "أضف للسلة"}
+</button>
         </div>
       </div>
     </article>

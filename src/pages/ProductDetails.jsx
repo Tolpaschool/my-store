@@ -2,25 +2,30 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import products from "../data/products";
 import "./ProductDetails.css";
 import ProductCard from "../components/ProductCard";
-
+import { useCart } from "../context/CartContext";
+import { useState } from "react";
 
 function ProductDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const product = products.find((p) => p.id === Number(id));
+  const [quantity, setQuantity] = useState(1);
 
+  const { addToCart } = useCart();
   if (!product) {
     return (
       <main className="container">
         <p className="empty">هذا المنتج غير موجود.</p>
-        <Link to="/" className="back-link">العودة للمتجر</Link>
+        <Link to="/" className="back-link">
+          العودة للمتجر
+        </Link>
       </main>
     );
   }
   const relatedProducts = products.filter(
-  (p) => p.category === product.category && p.id !== product.id
-);
+    (p) => p.category === product.category && p.id !== product.id,
+  );
 
   return (
     <main className="container">
@@ -44,22 +49,39 @@ function ProductDetails() {
           ) : (
             <p className="stock out">نفدت الكمية</p>
           )}
-
-          <button className="details-btn" disabled={product.stock === 0}>
+          <div
+            className="qty"
+            style={{ width: "fit-content", marginBottom: "16px" }}
+          >
+            <button onClick={() => setQuantity((q) => Math.max(1, q - 1))}>
+              −
+            </button>
+            <span>{quantity}</span>
+            <button
+              onClick={() => setQuantity((q) => Math.min(product.stock, q + 1))}
+            >
+              +
+            </button>
+          </div>
+          <button
+            onClick={() => addToCart(product)}
+            className="details-btn"
+            disabled={product.stock === 0}
+          >
             أضف للسلة
           </button>
         </div>
       </div>
       {relatedProducts.length > 0 && (
-  <section className="related">
-    <h2 className="section-title">منتجات مشابهة</h2>
-    <div className="products-grid">
-      {relatedProducts.map((item) => (
-        <ProductCard key={item.id} product={item} />
-      ))}
-    </div>
-  </section>
-)}
+        <section className="related">
+          <h2 className="section-title">منتجات مشابهة</h2>
+          <div className="products-grid">
+            {relatedProducts.map((item) => (
+              <ProductCard key={item.id} product={item} />
+            ))}
+          </div>
+        </section>
+      )}
     </main>
   );
 }

@@ -1,7 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
+import { useCart } from "../context/CartContext";
 
 function Navbar() {
+  const { totalItems } = useCart();
   return (
     <nav className="navbar">
       <Link to="/" className="navbar-logo">متجري</Link>
@@ -9,8 +11,7 @@ function Navbar() {
         <li><NavLink to="/">الرئيسية</NavLink></li>
         <li><NavLink to="/about">من نحن</NavLink></li>
       </ul>
-      <button className="navbar-cart">السلة (0)</button>
-    </nav>
+<Link to="/cart" className="navbar-cart">السلة ({totalItems})</Link>    </nav>
   );
 }
 
