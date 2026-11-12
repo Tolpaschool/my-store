@@ -1,6 +1,8 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
 import products from "../data/products";
 import "./ProductDetails.css";
+import ProductCard from "../components/ProductCard";
+
 
 function ProductDetails() {
   const { id } = useParams();
@@ -16,6 +18,9 @@ function ProductDetails() {
       </main>
     );
   }
+  const relatedProducts = products.filter(
+  (p) => p.category === product.category && p.id !== product.id
+);
 
   return (
     <main className="container">
@@ -45,6 +50,16 @@ function ProductDetails() {
           </button>
         </div>
       </div>
+      {relatedProducts.length > 0 && (
+  <section className="related">
+    <h2 className="section-title">منتجات مشابهة</h2>
+    <div className="products-grid">
+      {relatedProducts.map((item) => (
+        <ProductCard key={item.id} product={item} />
+      ))}
+    </div>
+  </section>
+)}
     </main>
   );
 }
