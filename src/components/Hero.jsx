@@ -5,7 +5,9 @@ function Hero({ title, subtitle, buttonText }) {
     <section className="hero">
       <h2>{title}</h2>
       <p>{subtitle}</p>
-      <button className="hero-btn">{buttonText}</button>
+      <a className="hero-btn" href="#products">
+        {buttonText}
+      </a>
     </section>
   );
 }

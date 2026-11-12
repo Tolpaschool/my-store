@@ -50,3 +50,7 @@ body {
 }
 .empty { text-align: center; color: var(--muted); padding: 60px 0; font-size: 17px; }
 .results-count { color: var(--muted); font-size: 14px; margin-bottom: 16px; }
+.notfound { text-align: center; padding: 100px 24px; }
+.notfound h1 { font-size: 90px; font-weight: 800; color: var(--brand); }
+.notfound p { color: var(--muted); margin-bottom: 20px; }
+html { scroll-behavior: smooth; }

@@ -11,3 +11,4 @@
   border: 0; cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 700;
   background: white; color: #4f46e5; padding: 12px 26px; border-radius: 12px;
 }
+.hero-btn  { display: inline-block; text-decoration: none;}

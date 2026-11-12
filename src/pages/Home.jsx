@@ -43,7 +43,7 @@ function Home() {
         buttonText="تسوق الآن"
       />
 
-      <h2 className="section-title">أحدث المنتجات</h2>
+      <h2 id="products" className="section-title">أحدث المنتجات</h2>
 
       <div className="toolbar">
         <SearchBar value={searchText} onChange={setSearchText} />
