@@ -66,3 +66,4 @@
   opacity: 0.88;
 }
 .card-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.card-btn.added { background: #16a34a; }
