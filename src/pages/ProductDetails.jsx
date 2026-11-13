@@ -3,7 +3,7 @@ import products from "../data/products";
 import "./ProductDetails.css";
 import ProductCard from "../components/ProductCard";
 import { useCart } from "../context/CartContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function ProductDetails() {
   const { id } = useParams();
@@ -11,8 +11,21 @@ function ProductDetails() {
 
   const product = products.find((p) => p.id === Number(id));
   const [quantity, setQuantity] = useState(1);
-
+  const [added, setAdded] = useState(false);
   const { addToCart } = useCart();
+
+  useEffect(() => {
+    if (!added) return;
+
+    const timer = setTimeout(() => setAdded(false), 2000);
+    return () => clearTimeout(timer);
+  }, [added]);
+
+  function handleAdd() {
+    addToCart(product, quantity);
+    setAdded(true);
+  }
+
   if (!product) {
     return (
       <main className="container">
@@ -64,11 +77,11 @@ function ProductDetails() {
             </button>
           </div>
           <button
-            onClick={() => addToCart(product)}
-            className="details-btn"
+            className={added ? "details-btn added" : "details-btn"}
+            onClick={handleAdd}
             disabled={product.stock === 0}
           >
-            أضف للسلة
+            {added ? "تمت الإضافة ✓" : "أضف للسلة"}
           </button>
         </div>
       </div>

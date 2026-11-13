@@ -17,3 +17,4 @@
 .details-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 @media (max-width: 700px) { .details { grid-template-columns: 1fr; } }
 .related { margin-top: 64px; }
+.details-btn.added { background: #16a34a; }

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet"><title>تصاميم المشروع - متجر + لوحة تحكم</title>
+<style>
+:root{--p:#6366f1;--pd:#4f46e5;--bg:#f8f9fc;--c:#fff;--t:#0f172a;--m:#64748b;--b:#e8eaf2;--w:#f59e0b;--r:#dc2626;--g:#16a34a}
+*{box-sizing:border-box}body{margin:0;font-family:"Tajawal",Tahoma,Arial,sans-serif;background:#e8ecef;color:var(--t)}
+.top{position:sticky;top:0;background:#1e1b4b;padding:10px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;z-index:9}
+.top a{color:#fff;text-decoration:none;font-size:13px;padding:6px 12px;border-radius:20px;background:#374151}
+.wrap{max-width:1000px;margin:20px auto;padding:0 12px}
+h2{font-size:15px;margin:28px 0 8px;color:#374151}
+.frame{background:var(--bg);border-radius:10px;overflow:hidden;box-shadow:0 4px 18px #0002;border:1px solid #cbd5e1}
+.bar{background:#d1d5db;padding:7px 12px;display:flex;gap:6px;align-items:center}
+.bar i{width:10px;height:10px;border-radius:50%;background:#9ca3af}.bar span{margin-inline-start:10px;background:#fff;border-radius:12px;padding:2px 14px;font-size:11px;color:var(--m);flex:1;direction:ltr}
+.nav{background:var(--c);padding:12px 20px;display:flex;align-items:center;gap:18px;border-bottom:1px solid var(--b);font-size:13px}
+.nav b{font-size:20px;font-weight:800;background:linear-gradient(135deg,#6366f1,#8b5cf6);-webkit-background-clip:text;background-clip:text;color:transparent}.nav .s{flex:1;background:var(--bg);border:1px solid var(--b);border-radius:8px;padding:7px 12px;color:var(--m)}
+.hero{margin:16px 20px;background:linear-gradient(120deg,#4f46e5,#8b5cf6 60%,#ec4899);color:#fff;border-radius:12px;padding:30px}
+.hero h3{margin:0 0 6px;font-size:22px}.hero p{margin:0 0 14px;opacity:.9;font-size:13px}
+.btn{display:inline-block;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border-radius:8px;padding:8px 16px;font-size:13px;border:0}
+.hero .btn{background:#fff;background-image:none;color:var(--pd)}.btn.o{background:#fff;color:var(--p);border:1px solid var(--p)}.btn.r{background:var(--r)}
+.chips{margin:0 20px;display:flex;gap:8px;flex-wrap:wrap}.chips span{background:var(--c);border:1px solid var(--b);border-radius:20px;padding:5px 14px;font-size:12px}.chips .on{background:var(--p);color:#fff;border-color:var(--p)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px;padding:16px 20px}
+.card{background:var(--c);border:1px solid var(--b);border-radius:16px;padding:10px;font-size:13px}
+.img{height:100px;border-radius:8px;margin-bottom:8px;display:grid;place-items:center;font-size:34px}
+.card .pr{color:var(--p);font-weight:bold;margin:4px 0 8px}.card .btn{width:100%;text-align:center}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:20px}
+.big{height:260px;border-radius:24px;display:grid;place-items:center;font-size:90px;background:linear-gradient(135deg,#e0e7ff,#c7d2fe)}
+.two h3{margin:0 0 6px}.two p{color:var(--m);font-size:13px;line-height:1.7}.price{font-size:24px;color:var(--p);font-weight:bold;margin:8px 0}
+.qty{display:inline-flex;border:1px solid var(--b);border-radius:8px;background:#fff;margin-inline-end:8px}.qty span{padding:6px 14px}
+.row{display:flex;align-items:center;gap:12px;background:var(--c);border:1px solid var(--b);border-radius:10px;padding:10px;margin-bottom:10px;font-size:13px}
+.row .th{width:54px;height:54px;border-radius:8px;display:grid;place-items:center;font-size:26px}.row .n{flex:1}
+.sum{background:var(--c);border:1px solid var(--b);border-radius:10px;padding:14px;font-size:13px}.sum div{display:flex;justify-content:space-between;padding:5px 0}
+.adm{display:grid;grid-template-columns:180px 1fr;min-height:340px}
+.side{background:#1e1b4b;color:#d1d5db;padding:16px;font-size:13px}.side b{display:block;color:#fff;font-size:16px;margin-bottom:14px}.side div{padding:8px 10px;border-radius:6px;margin-bottom:3px}.side .on{background:var(--p);color:#fff}
+.main{padding:16px}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.kpi{background:var(--c);border:1px solid var(--b);border-radius:10px;padding:12px;font-size:12px;color:var(--m)}.kpi b{display:block;font-size:20px;color:var(--t);margin-top:4px}
+.chart{background:var(--c);border:1px solid var(--b);border-radius:10px;padding:12px;font-size:12px;margin-bottom:14px}
+.bars{display:flex;align-items:flex-end;gap:10px;height:110px;margin-top:10px}.bars div{flex:1;background:var(--p);border-radius:4px 4px 0 0;opacity:.85}
+table{width:100%;border-collapse:collapse;background:var(--c);border:1px solid var(--b);font-size:12px}th,td{padding:9px;text-align:start;border-bottom:1px solid var(--b)}th{background:#f3f4f6}
+.tag{padding:2px 9px;border-radius:10px;font-size:11px;color:#fff}.ok{background:var(--g)}.wt{background:var(--w)}.no{background:var(--r)}
+.tools{display:flex;gap:8px;margin-bottom:10px}.tools .s{flex:1;background:#fff;border:1px solid var(--b);border-radius:8px;padding:7px 12px;color:var(--m);font-size:12px}
+.note{font-size:12px;color:var(--m);margin:6px 2px 0}
+@media(max-width:700px){.two,.adm{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}.side{display:none}}
+</style></head><body>
+<div class="top"><a href="#s1">1 الرئيسية</a><a href="#s2">2 المنتج</a><a href="#s3">3 السلة</a><a href="#s4">4 لوحة التحكم</a><a href="#s5">5 إدارة المنتجات</a></div>
+<div class="wrap">
+
+<h2 id="s1">الشاشة 1: الصفحة الرئيسية للمتجر (Home)</h2>
+<div class="frame"><div class="bar"><i></i><i></i><i></i><span>localhost:5173/</span></div>
+<div class="nav"><b>🛍️ متجري</b><span>الرئيسية</span><span>المنتجات</span><div class="s">🔍 ابحث عن منتج...</div><span>🛒 السلة (2)</span></div>
+<div class="hero"><h3>خصم 20% على الأجهزة</h3><p>تسوّق أحدث المنتجات بأفضل الأسعار</p><span class="btn">تسوق الآن</span></div>
+<div class="chips"><span class="on">الكل</span><span>إلكترونيات</span><span>ملابس</span><span>منزل</span><span>رياضة</span></div>
+<div class="grid">
+<div class="card"><div class="img" style="background:#dbeafe">🎧</div>سماعة لاسلكية<div class="pr">199 ر.س</div><span class="btn">أضف للسلة</span></div>
+<div class="card"><div class="img" style="background:#fce7f3">⌚</div>ساعة ذكية<div class="pr">349 ر.س</div><span class="btn">أضف للسلة</span></div>
+<div class="card"><div class="img" style="background:#dcfce7">🎒</div>حقيبة ظهر<div class="pr">129 ر.س</div><span class="btn">أضف للسلة</span></div>
+<div class="card"><div class="img" style="background:#fef3c7">👟</div>حذاء رياضي<div class="pr">259 ر.س</div><span class="btn">أضف للسلة</span></div>
+</div></div>
+
+<h2 id="s2">الشاشة 2: تفاصيل المنتج (Product Details)</h2>
+<div class="frame"><div class="bar"><i></i><i></i><i></i><span>localhost:5173/product/1</span></div>
+<div class="nav"><b>🛍️ متجري</b><span>الرئيسية</span><span>المنتجات</span><div class="s">🔍 ابحث...</div><span>🛒 السلة (2)</span></div>
+<div class="two"><div class="big">🎧</div><div><h3>سماعة لاسلكية</h3><p>⭐⭐⭐⭐☆ (24 تقييم)<br>سماعة بلوتوث بجودة صوت عالية وبطارية تدوم 30 ساعة.</p><div class="price">199 ر.س</div><p>متوفر في المخزون: 12 قطعة</p><div class="qty"><span>−</span><span>1</span><span>+</span></div><span class="btn">أضف للسلة</span></div></div></div>
+
+<h2 id="s3">الشاشة 3: سلة المشتريات (Cart)</h2>
+<div class="frame"><div class="bar"><i></i><i></i><i></i><span>localhost:5173/cart</span></div>
+<div class="two" style="grid-template-columns:2fr 1fr">
+<div><div class="row"><div class="th" style="background:#dbeafe">🎧</div><div class="n">سماعة لاسلكية<br><small>199 ر.س</small></div><div class="qty"><span>−</span><span>1</span><span>+</span></div><b>199</b><span>🗑️</span></div>
+<div class="row"><div class="th" style="background:#fef3c7">👟</div><div class="n">حذاء رياضي<br><small>259 ر.س</small></div><div class="qty"><span>−</span><span>2</span><span>+</span></div><b>518</b><span>🗑️</span></div></div>
+<div class="sum"><b>ملخص الطلب</b><div><span>المجموع</span><span>717 ر.س</span></div><div><span>الشحن</span><span>25 ر.س</span></div><div><b>الإجمالي</b><b>742 ر.س</b></div><span class="btn" style="display:block;text-align:center">إتمام الطلب</span></div></div></div>
+
+<h2 id="s4">الشاشة 4: لوحة التحكم (Admin Dashboard)</h2>
+<div class="frame"><div class="bar"><i></i><i></i><i></i><span>localhost:5173/admin</span></div>
+<div class="adm"><div class="side"><b>⚙️ الإدارة</b><div class="on">📊 الرئيسية</div><div>📦 المنتجات</div><div>🧾 الطلبات</div><div>👥 العملاء</div></div>
+<div class="main"><div class="kpis"><div class="kpi">المبيعات<b>45,200</b></div><div class="kpi">الطلبات<b>128</b></div><div class="kpi">المنتجات<b>56</b></div><div class="kpi">العملاء<b>94</b></div></div>
+<div class="chart">المبيعات خلال الأسبوع<div class="bars"><div style="height:40%"></div><div style="height:65%"></div><div style="height:50%"></div><div style="height:85%"></div><div style="height:60%"></div><div style="height:95%"></div><div style="height:75%"></div></div></div>
+<table><tr><th>رقم الطلب</th><th>العميل</th><th>المبلغ</th><th>الحالة</th></tr><tr><td>#1042</td><td>أحمد</td><td>742</td><td><span class="tag ok">مكتمل</span></td></tr><tr><td>#1043</td><td>سارة</td><td>199</td><td><span class="tag wt">قيد التجهيز</span></td></tr></table></div></div></div>
+
+<h2 id="s5">الشاشة 5: إدارة المنتجات (CRUD)</h2>
+<div class="frame"><div class="bar"><i></i><i></i><i></i><span>localhost:5173/admin/products</span></div>
+<div class="adm"><div class="side"><b>⚙️ الإدارة</b><div>📊 الرئيسية</div><div class="on">📦 المنتجات</div><div>🧾 الطلبات</div><div>👥 العملاء</div></div>
+<div class="main"><div class="tools"><div class="s">🔍 بحث عن منتج...</div><div class="s" style="flex:0 0 120px">الفئة: الكل ▾</div><span class="btn">+ منتج جديد</span></div>
+<table><tr><th>المنتج</th><th>السعر</th><th>المخزون</th><th>الحالة</th><th>إجراءات</th></tr>
+<tr><td>🎧 سماعة لاسلكية</td><td>199</td><td>12</td><td><span class="tag ok">متوفر</span></td><td>✏️ 🗑️</td></tr>
+<tr><td>⌚ ساعة ذكية</td><td>349</td><td>3</td><td><span class="tag wt">منخفض</span></td><td>✏️ 🗑️</td></tr>
+<tr><td>🎒 حقيبة ظهر</td><td>129</td><td>0</td><td><span class="tag no">نفد</span></td><td>✏️ 🗑️</td></tr></table>
+<p class="note">الضغط على ✏️ يفتح نموذج التعديل، وعلى 🗑️ يطلب تأكيد الحذف.</p></div></div></div>
+
+</div></body></html>
