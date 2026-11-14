@@ -9,6 +9,7 @@ function Navbar() {
       <Link to="/" className="navbar-logo">متجري</Link>
       <ul className="navbar-links">
         <li><NavLink to="/">الرئيسية</NavLink></li>
+        <li><NavLink to="/admin">لوحة التحكم</NavLink></li>
         <li><NavLink to="/about">من نحن</NavLink></li>
       </ul>
 <Link to="/cart" className="navbar-cart">السلة ({totalItems})</Link>    </nav>

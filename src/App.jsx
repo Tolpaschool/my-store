@@ -1,34 +1,37 @@
-
-import './App.css'
-import { Routes, Route  } from "react-router-dom";
-import ScrollToTop from './components/ScrollToTop.jsx';
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import Home from './pages/Home';
-import About from './pages/About';
-import NotFound from './pages/NotFound.jsx';
+import { Routes, Route } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
+import MainLayout from "./layouts/MainLayout";
+import AdminLayout from "./layouts/AdminLayout";
+import Home from "./pages/Home";
+import About from "./pages/About";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
-
+import NotFound from "./pages/NotFound";
+import Dashboard from "./pages/admin/Dashboard";
+import AdminProducts from "./pages/admin/AdminProducts";
+import AdminOrders from "./pages/admin/AdminOrders";
 
 function App() {
- 
-
   return (
-  
-     <>
-     <ScrollToTop />
-    <Navbar /> 
-   <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/product/:id" element={<ProductDetails />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="/cart" element={<Cart />} />
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="products" element={<AdminProducts />} />
+          <Route path="orders" element={<AdminOrders />} />
+        </Route>
       </Routes>
-     <Footer />
-     </>
-  )
+    </>
+  );
 }
 
-export default App
+export default App;

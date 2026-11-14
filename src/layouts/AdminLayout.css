@@ -1,0 +1,14 @@
+.admin { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+.admin-side { background: #1e1b4b; color: #c7d2fe; padding: 24px 16px; display: flex; flex-direction: column; gap: 20px; position: sticky; top: 0; height: 100vh; }
+.admin-title { color: white; font-size: 20px; padding: 0 10px; }
+.admin-side nav { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.admin-side nav a { color: inherit; text-decoration: none; padding: 11px 14px; border-radius: 10px; font-size: 15px; }
+.admin-side nav a:hover { background: #312e81; }
+.admin-side nav a.active { background: var(--brand); color: white; font-weight: 700; }
+.admin-back { color: #a5b4fc; text-decoration: none; font-size: 14px; padding: 0 10px; }
+.admin-content { padding: 32px; min-width: 0; }
+@media (max-width: 800px) {
+  .admin { grid-template-columns: 1fr; }
+  .admin-side { position: static; height: auto; }
+  .admin-side nav { flex-direction: row; flex-wrap: wrap; }
+}
