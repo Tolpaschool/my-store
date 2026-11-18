@@ -1,53 +1,69 @@
-import { createContext, useContext, useState ,useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
+import { useProducts } from "./ProductsContext";
 
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useState(() => {
-  try {
-    const saved = localStorage.getItem("cart");
-    return saved ? JSON.parse(saved) : [];
-  } catch {
-    return [];
-  }
-});
+  const { products } = useProducts();
 
-useEffect(() => {
-  localStorage.setItem("cart", JSON.stringify(cartItems));
-}, [cartItems]);
+  const [lines, setLines] = useState(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem("cart"));
+      return Array.isArray(saved)
+        ? saved.map(({ id, quantity }) => ({ id, quantity }))
+        : [];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(lines));
+  }, [lines]);
+
+  const cartItems = lines
+    .map((line) => {
+      const product = products.find((p) => p.id === line.id);
+      if (!product || product.stock === 0) return null;
+      return { ...product, quantity: Math.min(line.quantity, product.stock) };
+    })
+    .filter(Boolean);
 
   function addToCart(product, quantity = 1) {
-    setCartItems((prev) => {
-      const existing = prev.find((item) => item.id === product.id);
+    setLines((prev) => {
+      const existing = prev.find((l) => l.id === product.id);
 
       if (existing) {
-        return prev.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: Math.min(item.quantity + quantity, product.stock) }
-            : item
+        return prev.map((l) =>
+          l.id === product.id
+            ? { ...l, quantity: Math.min(l.quantity + quantity, product.stock) }
+            : l
         );
       }
 
-      return [...prev, { ...product, quantity: Math.min(quantity, product.stock) }];
+      return [...prev, { id: product.id, quantity: Math.min(quantity, product.stock) }];
     });
   }
 
   function removeFromCart(id) {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
+    setLines((prev) => prev.filter((l) => l.id !== id));
   }
 
   function updateQuantity(id, quantity) {
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, Math.min(quantity, item.stock)) }
-          : item
+    const product = products.find((p) => p.id === id);
+    if (!product) return;
+
+    setLines((prev) =>
+      prev.map((l) =>
+        l.id === id
+          ? { ...l, quantity: Math.max(1, Math.min(quantity, product.stock)) }
+          : l
       )
     );
   }
 
   function clearCart() {
-    setCartItems([]);
+    setLines([]);
   }
 
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
@@ -65,7 +81,7 @@ useEffect(() => {
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
-
+// eslint-disable-next-line react-refresh/only-export-components
 export function useCart() {
   return useContext(CartContext);
 }

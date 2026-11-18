@@ -54,3 +54,6 @@ body {
 .notfound h1 { font-size: 90px; font-weight: 800; color: var(--brand); }
 .notfound p { color: var(--muted); margin-bottom: 20px; }
 html { scroll-behavior: smooth; }
+.btn-danger { border: 0; background: #dc2626; color: white; font-family: inherit; font-weight: 700; padding: 11px 22px; border-radius: 12px; cursor: pointer; }
+.btn-light { border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-family: inherit; font-weight: 700; padding: 11px 22px; border-radius: 12px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; }
+a.details-btn { text-decoration: none; display: inline-flex; align-items: center; }

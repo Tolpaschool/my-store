@@ -1,7 +1,16 @@
-import { NavLink, Link, Outlet } from "react-router-dom";
-import "./AdminLayout.css";
+import { NavLink, Link, Outlet, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";import "./AdminLayout.css";
+
 
 function AdminLayout() {
+
+  const { logout } = useAuth();
+const navigate = useNavigate();
+
+function handleLogout() {
+  logout();
+  navigate("/");
+}
   return (
     <div className="admin">
       <aside className="admin-side">
@@ -14,6 +23,7 @@ function AdminLayout() {
         </nav>
 
         <Link to="/" className="admin-back">← العودة للمتجر</Link>
+        <button className="admin-logout" onClick={handleLogout}>تسجيل الخروج</button>
       </aside>
 
       <section className="admin-content">

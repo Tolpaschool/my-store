@@ -12,3 +12,4 @@
   .admin-side { position: static; height: auto; }
   .admin-side nav { flex-direction: row; flex-wrap: wrap; }
 }
+.admin-logout { border: 0; background: none; color: #fca5a5; font-family: inherit; font-size: 14px; text-align: start; padding: 0 10px; cursor: pointer; }

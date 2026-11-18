@@ -1,19 +1,22 @@
-import { useParams, useNavigate, Link } from "react-router-dom";
-import products from "../data/products";
-import "./ProductDetails.css";
-import ProductCard from "../components/ProductCard";
-import { useCart } from "../context/CartContext";
 import { useState, useEffect } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { useProducts } from "../context/ProductsContext";
+import { useCart } from "../context/CartContext";
+import ProductCard from "../components/ProductCard";
+import "./ProductDetails.css";
+import PageState from "../components/PageState";
 
-function ProductDetails() {
+
+function ProductDetailsContent() {
   const { id } = useParams();
   const navigate = useNavigate();
-
-  const product = products.find((p) => p.id === Number(id));
-  const [quantity, setQuantity] = useState(1);
-  const [added, setAdded] = useState(false);
   const { addToCart } = useCart();
 
+  const [quantity, setQuantity] = useState(1);
+  const [added, setAdded] = useState(false);
+  const { products, status, reload } = useProducts();
+
+  
   useEffect(() => {
     if (!added) return;
 
@@ -21,24 +24,32 @@ function ProductDetails() {
     return () => clearTimeout(timer);
   }, [added]);
 
-  function handleAdd() {
-    addToCart(product, quantity);
-    setAdded(true);
-  }
-
+  const product = products.find((p) => p.id === Number(id));
+  
+  if (status !== "ready") {
+  return (
+    <main className="container">
+      <PageState status={status} onRetry={reload} />
+    </main>
+  );
+}
   if (!product) {
     return (
       <main className="container">
         <p className="empty">هذا المنتج غير موجود.</p>
-        <Link to="/" className="back-link">
-          العودة للمتجر
-        </Link>
+        <Link to="/" className="back-link">العودة للمتجر</Link>
       </main>
     );
   }
+
   const relatedProducts = products.filter(
-    (p) => p.category === product.category && p.id !== product.id,
+    (p) => p.category === product.category && p.id !== product.id
   );
+
+  function handleAdd() {
+    addToCart(product, quantity);
+    setAdded(true);
+  }
 
   return (
     <main className="container">
@@ -58,24 +69,19 @@ function ProductDetails() {
           <p className="details-price">{product.price} ر.س</p>
 
           {product.stock > 0 ? (
-            <p className="stock in">متوفر: {product.stock} قطعة</p>
+            <>
+              <p className="stock in">متوفر: {product.stock} قطعة</p>
+
+              <div className="qty" style={{ width: "fit-content", marginBottom: "16px" }}>
+                <button onClick={() => setQuantity((q) => Math.max(1, q - 1))}>−</button>
+                <span>{quantity}</span>
+                <button onClick={() => setQuantity((q) => Math.min(product.stock, q + 1))}>+</button>
+              </div>
+            </>
           ) : (
             <p className="stock out">نفدت الكمية</p>
           )}
-          <div
-            className="qty"
-            style={{ width: "fit-content", marginBottom: "16px" }}
-          >
-            <button onClick={() => setQuantity((q) => Math.max(1, q - 1))}>
-              −
-            </button>
-            <span>{quantity}</span>
-            <button
-              onClick={() => setQuantity((q) => Math.min(product.stock, q + 1))}
-            >
-              +
-            </button>
-          </div>
+
           <button
             className={added ? "details-btn added" : "details-btn"}
             onClick={handleAdd}
@@ -85,6 +91,7 @@ function ProductDetails() {
           </button>
         </div>
       </div>
+
       {relatedProducts.length > 0 && (
         <section className="related">
           <h2 className="section-title">منتجات مشابهة</h2>
@@ -99,4 +106,4 @@ function ProductDetails() {
   );
 }
 
-export default ProductDetails;
+export default ProductDetailsContent;

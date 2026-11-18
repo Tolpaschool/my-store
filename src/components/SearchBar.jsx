@@ -1,4 +1,3 @@
-import products from "../data/products";
 import "./SearchBar.css";
 
 function SearchBar({ value, onChange }) {

@@ -1,0 +1,3 @@
+.checkout { display: grid; grid-template-columns: 1.3fr 1fr; gap: 28px; align-items: start; }
+.field select { font-family: inherit; font-size: 15px; padding: 11px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+@media (max-width: 800px) { .checkout { grid-template-columns: 1fr; } }

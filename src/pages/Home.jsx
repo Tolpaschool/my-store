@@ -3,12 +3,15 @@ import Hero from "../components/Hero";
 import ProductCard from "../components/ProductCard";
 import CategoryFilter from "../components/CategoryFilter";
 import SearchBar from "../components/SearchBar";
-import products from "../data/products";
+import { useProducts } from "../context/ProductsContext";
+import PageState from "../components/PageState";
+
 
 function Home() {
   const [selectedCategory, setSelectedCategory] = useState("الكل");
   const [searchText, setSearchText] = useState("");
   const [sortBy, setSortBy] = useState("default");
+  const { products, status, reload } = useProducts();
 
   const categories = ["الكل", ...new Set(products.map((p) => p.category))];
 
@@ -34,6 +37,13 @@ function Home() {
     setSearchText("");
     setSortBy("default");
   }
+  if (status !== "ready") {
+  return (
+    <main className="container">
+      <PageState status={status} onRetry={reload} />
+    </main>
+  );
+}
 
   return (
     <main className="container">

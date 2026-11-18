@@ -1,18 +1,22 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import "./Cart.css";
+import { getShipping } from "../utils/pricing";
 
 function Cart() {
-  const { cartItems, removeFromCart, updateQuantity, clearCart, totalPrice } = useCart();
+  const { cartItems, removeFromCart, updateQuantity, clearCart, totalPrice } =
+    useCart();
 
-  const shipping = totalPrice > 500 || totalPrice === 0 ? 0 : 25;
+  const shipping = getShipping(totalPrice);
 
   if (cartItems.length === 0) {
     return (
       <main className="container">
         <p className="empty">سلتك فارغة 🛒</p>
         <div style={{ textAlign: "center" }}>
-          <Link to="/" className="back-link">تصفح المنتجات</Link>
+          <Link to="/" className="back-link">
+            تصفح المنتجات
+          </Link>
         </div>
       </main>
     );
@@ -36,14 +40,27 @@ function Cart() {
               </div>
 
               <div className="qty">
-                <button onClick={() => updateQuantity(item.id, item.quantity - 1)}>−</button>
+                <button
+                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                >
+                  −
+                </button>
                 <span>{item.quantity}</span>
-                <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</button>
+                <button
+                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                >
+                  +
+                </button>
               </div>
 
-              <p className="cart-line-total">{item.price * item.quantity} ر.س</p>
+              <p className="cart-line-total">
+                {item.price * item.quantity} ر.س
+              </p>
 
-              <button className="cart-remove" onClick={() => removeFromCart(item.id)}>
+              <button
+                className="cart-remove"
+                onClick={() => removeFromCart(item.id)}
+              >
                 🗑️
               </button>
             </div>
@@ -52,14 +69,28 @@ function Cart() {
 
         <aside className="summary">
           <h3>ملخص الطلب</h3>
-          <div><span>المجموع</span><span>{totalPrice} ر.س</span></div>
-          <div><span>الشحن</span><span>{shipping === 0 ? "مجاني" : `${shipping} ر.س`}</span></div>
+          <div>
+            <span>المجموع</span>
+            <span>{totalPrice} ر.س</span>
+          </div>
+          <div>
+            <span>الشحن</span>
+            <span>{shipping === 0 ? "مجاني" : `${shipping} ر.س`}</span>
+          </div>
           <div className="summary-total">
             <span>الإجمالي</span>
             <span>{totalPrice + shipping} ر.س</span>
           </div>
-          <button className="details-btn" style={{ width: "100%" }}>إتمام الطلب</button>
-          <button className="clear-btn" onClick={clearCart}>تفريغ السلة</button>
+          <Link
+            to="/checkout"
+            className="details-btn"
+            style={{ width: "100%", justifyContent: "center" }}
+          >
+            إتمام الطلب
+          </Link>
+          <button className="clear-btn" onClick={clearCart}>
+            تفريغ السلة
+          </button>
         </aside>
       </div>
     </main>
