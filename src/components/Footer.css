@@ -42,3 +42,14 @@
   text-align: center;
   color: var(--muted);
 }
+.footer a {
+  display: block;
+  color: var(--muted);
+  text-decoration: none;
+  margin-bottom: 6px;
+  transition: color 0.2s;
+}
+
+.footer a:hover {
+  color: var(--brand);
+}
